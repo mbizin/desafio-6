@@ -10,6 +10,9 @@ module.exports = class NLURequest {
                     },
                     'relations': {
                         'model': model
+                    },
+                    'sentiment': {
+                    	'document': true
                     }
                 },
                 'language': 'pt'
@@ -37,7 +40,7 @@ module.exports = class NLURequest {
                     promises.push(analyze(this.service, this.input.slice(i * 50000, (i + 1) * 50000), this.parameters))
                 }
                 Promise.all(promises).then((results) => {
-                    //console.log(results)
+                    console.log(results)
                     let body = {}
                     if (results[0].usage) {
                         body.usage = reduceUsage(results)
