@@ -45,7 +45,7 @@ exports.NLU = (req, res) => {
                 }
                 Promise.all(pages).then(result4 => {
                     let text = result4.join('\n')
-                    let request = new NLURequest(nlu, text)
+                    let request = new NLURequest(nlu, text, process.env.MODEL_ID)
                     request.execute().then(result5 => res.send(result5)).catch((err) => {
                         console.log(err);
                         res.sendStatus(500).json({ error: true })
